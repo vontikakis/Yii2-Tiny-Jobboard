@@ -1,0 +1,396 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+
+/* universal */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 22px;
+  color: #c00;
+  border-top: 1px solid #ccc;
+  padding: 30px;
+  padding-left: 0px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero-text {
+    color: rgba(93,93,93,.8);
+    padding: 50px 0 30px;
+}
+
+.hero-title {
+    font-size: 28px;
+    line-height: 1.09;
+    font-weight: 700;
+    color: #0a0a0a;
+    margin: 0 0 40px;
+    letter-spacing: -.036rem;
+}
+
+.hero-helper {
+    letter-spacing: .072rem;
+    line-height: 1.33;
+    font-size: 18px;
+    margin: 0;
+}
+
+#job-list h2 {
+  
+  border-top: 0;
+  margin-bottom: 0px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #444444;
+  padding: 0;
+  margin-top: 40px;
+  margin-bottom:10px;
+}
+
+#job-list h2 a { 
+    color: #999999;
+}
+
+#job-list ul {
+  
+  list-style:none;
+  padding-left:0;
+}
+
+#job-list ul li {
+    font-size: 1.2rem;
+    padding: 18px 10px 18px 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+#job-list ul li span.title {
+    text-decoration: underline;
+    max-width: calc(100% - 270px);
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+#job-list ul li span.company {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right:20px;
+}
+
+#job-list ul li span.category {
+  color: #685f50;
+    float:right;
+    font-size:11px;
+    margin-top:6px;
+    margin-right:10px;
+}
+
+#job-list ul li span.created-at {
+  color: #AA9C84;
+  font-size:18px;
+  float:right;
+}
+
+#job-list ul li .total-active-jobs {
+  
+   font-size:16px;
+
+}
+
+#job-create  {
+  
+     padding-left:40px;
+}
+
+div#job-create input[type="text"] {
+    font-size: 16px;
+    width: 500px;
+}
+
+div#job-create textarea {
+    font-size: 1.1rem;
+    width: 800px;
+    min-height: 200px;
+}
+
+.jobs-new-catogories {
+  
+  list-style-type:none;
+
+}
+
+#job-show .back-to-all-jobs{
+  
+  font-size:14px;
+  margin-left:5px;
+  margin-top:15px;
+  float:left;
+}
+
+#job-show .back-to-all-category-jobs{
+  
+  font-size:14px;
+  margin-left:5px;
+  margin-top:15px;
+  float:right;
+}
+
+
+#job-show .header {
+
+  height:190px;
+  float: left;
+  padding: 20px 20px 10px 20px;
+}
+
+#job-show .logo img { 
+
+  overflow: hidden;
+  float: right;
+  margin-top: 30px;
+  padding: 20px 0 0 0;
+}
+
+#job-show  h1 {
+    font-size: 36px;
+    color: #222;
+    padding: 0;
+    margin: 0 0 7px 0;
+    font-weight: normal;
+    line-height: 1em;
+    margin-top:20px;
+    text-align: left;
+}
+
+#job-show  h2 {
+    font-size: 18px;;
+    font-weight: normal;
+    padding: 0 0 10px 0;
+    color: #000;
+    margin: 0;
+    line-height: 1.4em;
+   border:0;
+
+}
+
+#job-show h2 .company {
+    font-weight: bold;
+    letter-spacing: 0px;
+}
+
+#job-show h2 .location {
+    font-weight: normal;
+}
+
+#job-show h3 {
+  font-size: 12px;
+  color: #888;
+  font-weight: normal;
+  line-height: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top:0px;
+}
+
+#job-show .apply{
+    margin: 20px 0 20px 0;
+    padding: 20px;
+    background: #f0f0f0;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-radius: 5px;
+}
+
+#job-show .apply h3 {
+  font-size: 16px;
+  color: #888;
+  font-weight: normal;
+  line-height: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top:0px;
+}
