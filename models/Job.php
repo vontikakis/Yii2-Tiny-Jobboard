@@ -116,7 +116,7 @@ class Job extends ActiveRecord
         
             if ($insert) {
 
-                $this->token = hash('sha256',$this->email.time().rand(1000, 9999));
+                $this->token = hash('sha256', $this->email.time().rand(1000, 9999));
             }
         
             return true;
@@ -135,7 +135,7 @@ class Job extends ActiveRecord
         $path = Yii::getAlias('@webroot').DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR;
 
 
-        if(!is_dir( $path.$this->id)) {
+        if(!is_dir($path.$this->id)) {
 
             mkdir($path.$this->id, 0755);
         }

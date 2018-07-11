@@ -8,7 +8,6 @@
  * @copyright 2018 Vasilis Vontikakis
  * @license   GPL
  * @link      https://www.vontikakis.com/
- * 
  */
 
 namespace app\controllers;
@@ -42,6 +41,7 @@ class JobController extends Controller
 
     /**
      * Lists all Job models in admin panel.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -51,11 +51,13 @@ class JobController extends Controller
             $searchModel = new JobSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
    
-            return $this->render('index', [
+            return $this->render(
+                'index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
                 
-            ]);
+                ]
+            );
 
         } else {
 
@@ -65,6 +67,7 @@ class JobController extends Controller
    
     /**
      * Jobs in homes page group by categories
+     *
      * @return mixed
      */
     public function actionList()
@@ -72,16 +75,19 @@ class JobController extends Controller
         
         $categories = Category::find()->joinWith(['jobs'])->orderBy('tb_jobs.created_at desc')->all();
 
-        return $this->render('list', [
+        return $this->render(
+            'list', [
             'categories' => $categories,
-        ]);
+            ]
+        );
     }
 
 
     /**
      * Displays a view of job in admin or of is public
-     * @param integer $id
-     * @param string $slug
+     *
+     * @param  integer $id
+     * @param  string  $slug
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -92,9 +98,11 @@ class JobController extends Controller
         
         if($model->is_public == true || !Yii::$app->user->isGuest) {
 
-            return $this->render('view', [
+            return $this->render(
+                'view', [
                 'model' => $this->findModel($id),
-            ]);
+                ]
+            );
 
         } else {
 
@@ -105,6 +113,7 @@ class JobController extends Controller
     /**
      * Creates a new Job model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionNew()
@@ -127,23 +136,26 @@ class JobController extends Controller
                     ->setTextBody('new job for approval')
                     ->send();
                 
-                Yii::$app->session->setFlash('success',Yii::t('app','Job was posted please wait for approve.'));
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Job was posted please wait for approve.'));
                
             }          
 
             return $this->redirect(['job/list']);
         }
 
-        return $this->render('create', [
+        return $this->render(
+            'create', [
             'model' => $model,
             'categories' => $categories,
-        ]);
+            ]
+        );
     }
 
     /**
      * Updates an existing Job model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     *
+     * @param  string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -159,10 +171,12 @@ class JobController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             }
 
-            return $this->render('update', [
+            return $this->render(
+                'update', [
                 'model' => $model,
                 'categories' => $categories
-            ]);
+                ]
+            );
         } else {
 
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
@@ -172,11 +186,12 @@ class JobController extends Controller
     /**
      * Deletes an existing Job model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     *
+     * @param  string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-     public function actionDelete($id)
+    public function actionDelete($id)
     {
         if(!Yii::$app->user->isGuest) {
             
@@ -192,7 +207,8 @@ class JobController extends Controller
     /**
      * Finds the Job model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
+     *
+     * @param  string $id
      * @return Job the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

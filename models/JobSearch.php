@@ -45,10 +45,12 @@ class JobSearch extends Job
 
         // add conditions that should always apply here
 
-        $dataProvider = new ActiveDataProvider([
+        $dataProvider = new ActiveDataProvider(
+            [
             'query' => $query,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]]
-        ]);
+            ]
+        );
 
         $this->load($params);
 
@@ -59,14 +61,16 @@ class JobSearch extends Job
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+        $query->andFilterWhere(
+            [
             'id' => $this->id,
             'is_public' => $this->is_public,
             'category_id' => $this->category_id,
             'expired_at' => $this->expired_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-        ]);
+            ]
+        );
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])

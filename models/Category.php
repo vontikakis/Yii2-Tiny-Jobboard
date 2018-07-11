@@ -75,7 +75,7 @@ class Category extends \yii\db\ActiveRecord
 
     public function getCountActiveJobs()
     {
-       return $this->criteriaActiveJobs()->count();
+        return $this->criteriaActiveJobs()->count();
     }
 
     public static function activeCategories() 

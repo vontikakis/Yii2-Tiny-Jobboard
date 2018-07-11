@@ -19,26 +19,28 @@ use yii\filters\VerbFilter;
  * @copyright 2018 Vasilis Vontikakis
  * @license   GPL
  * @link      https://www.vontikakis.com/
- * 
  */
 
 class CategoryController extends Controller
 {
 
-	/**
-	 * show jobs by category
-	 * @param  integer $id  id number of category
-	 * @param  string $slug slug name 
-	 * @return mixed       
-	 */
+    /**
+     * show jobs by category
+     *
+     * @param  integer $id   id number of category
+     * @param  string  $slug slug name 
+     * @return mixed       
+     */
     public function actionList($id, $slug = false)
     {
 
-    	$categories = Category::find()->where(['id' => $id])->all();
+        $categories = Category::find()->where(['id' => $id])->all();
         
-        return $this->render('list', [
-        	'categories' => $categories,
-        ]);
+        return $this->render(
+            'list', [
+            'categories' => $categories,
+            ]
+        );
     }
 
 }
