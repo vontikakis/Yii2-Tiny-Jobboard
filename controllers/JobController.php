@@ -165,24 +165,20 @@ class JobController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->isGuest) {
-            $model = $this->findModel($id);
-            
-            $categories = Category::activeCategories();
+
+        $model = $this->findModel($id);
+        
+        $categories = Category::activeCategories();
 
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-
-            return $this->render('update', [
-                'model' => $model,
-                'categories' => $categories
-            ]);
-        } else {
-
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            'categories' => $categories
+        ]);
     } 
 
     /**
@@ -195,15 +191,10 @@ class JobController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->isGuest) {
-            
-            $this->findModel($id)->delete();
 
-            return $this->redirect(['index']);
-        } else {
+        $this->findModel($id)->delete();
 
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-        }
+        return $this->redirect(['index']);
     } 
 
     /**
