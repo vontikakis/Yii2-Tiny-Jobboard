@@ -19,6 +19,7 @@ use app\models\Category;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
 /**
@@ -33,7 +34,23 @@ class JobController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
+                    'deletemail' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['list', 'view', 'new'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['list', 'index','delete','create','update','view', 'new'],
+                        'roles' => ['@'],
+                    ]
                 ],
             ],
         ];
@@ -46,23 +63,16 @@ class JobController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest) {
+        $searchModel = new JobSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            $searchModel = new JobSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-   
-            return $this->render(
-                'index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-                
-                ]
-            );
-
-        } else {
-
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-        }
+        return $this->render(
+            'index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+            ]
+        );
     }
    
     /**

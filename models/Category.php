@@ -4,6 +4,10 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%tb_categories}}".
@@ -16,7 +20,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property TbJobs[] $tbJobs
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -32,7 +36,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at'], 'required'],
+            [['name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug'], 'string', 'max' => 255],
         ];
@@ -76,6 +80,26 @@ class Category extends \yii\db\ActiveRecord
     public function getCountActiveJobs()
     {
         return $this->criteriaActiveJobs()->count();
+    }
+
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => new Expression('UTC_TIMESTAMP()'),
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+            ],
+        ];
     }
 
     public static function activeCategories() 

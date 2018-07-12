@@ -45,6 +45,10 @@ AppAsset::register($this);
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
+                . Html::a('Categories',['/category/index'])
+                .'</li><li>'
+                . Html::a('Jobs',['/job/index'])
+                .'</li><li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',
