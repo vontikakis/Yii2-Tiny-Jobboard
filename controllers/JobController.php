@@ -85,11 +85,9 @@ class JobController extends Controller
         
         $categories = Category::find()->joinWith(['jobs'])->orderBy('tb_jobs.created_at desc')->all();
 
-        return $this->render(
-            'list', [
+        return $this->render('list', [
             'categories' => $categories,
-            ]
-        );
+        ]);
     }
 
 
@@ -108,11 +106,9 @@ class JobController extends Controller
         
         if($model->is_public == true || !Yii::$app->user->isGuest) {
 
-            return $this->render(
-                'view', [
+            return $this->render('view', [
                 'model' => $this->findModel($id),
-                ]
-            );
+            ]);
 
         } else {
 
@@ -153,12 +149,10 @@ class JobController extends Controller
             return $this->redirect(['job/list']);
         }
 
-        return $this->render(
-            'create', [
+        return $this->render('create', [
             'model' => $model,
             'categories' => $categories,
-            ]
-        );
+        ]);
     }
 
     /**
@@ -181,12 +175,10 @@ class JobController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             }
 
-            return $this->render(
-                'update', [
+            return $this->render('update', [
                 'model' => $model,
                 'categories' => $categories
-                ]
-            );
+            ]);
         } else {
 
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
@@ -226,8 +218,7 @@ class JobController extends Controller
     {
         if (($model = Job::findOne($id)) !== null) {
             return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        } else 
+             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

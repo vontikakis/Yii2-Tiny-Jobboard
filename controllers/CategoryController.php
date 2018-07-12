@@ -68,11 +68,9 @@ class CategoryController extends Controller
 
         $categories = Category::find()->where(['id' => $id])->all();
         
-        return $this->render(
-            'list', [
+        return $this->render('list', [
             'categories' => $categories,
-            ]
-        );
+        ]);
     }
 
         /**
@@ -148,13 +146,11 @@ class CategoryController extends Controller
 
     protected function findModel($id)
     {
-
         if (($model = Category::findOne($id)) !== null) {
             return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-}
+        } else    
+             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
 
 
 }
